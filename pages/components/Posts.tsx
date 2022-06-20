@@ -1,8 +1,14 @@
 import styled from 'styled-components';
-
-
+import useSWR from 'swr'
 
 export default function Posts() {
+
+const fetcher = (...args) => fetch(...args).then(res => res.json())
+const { data, error } = useSWR('https://api.dev.coinghost.com/blogs', fetcher)
+if (error) return <div>failed to load</div>
+if (!data) return <div>loading...</div>
+
+console.log(data.data)
 
 return (
     <PostContainer>

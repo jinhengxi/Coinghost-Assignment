@@ -2,6 +2,9 @@ import { fetcher } from '../../utils/fetcher';
 import PostList from './PostList';
 import useSWR from 'swr'
 import { DataType } from './PostList'
+import { useRouter } from 'next/router'
+
+
 
 
 
@@ -15,7 +18,13 @@ interface fetchDataType {
 
 export default function Posts() {
 
-const { data, error } = useSWR<fetchDataType>('https://api.dev.coinghost.com/blogs', fetcher)
+    const router = useRouter();
+    
+console.log(router.query);
+const query = Object.entries(router.query).map(el=>el.join('=').replace(/,/g,'&'+el[0]+'=')).join('&')
+console.log(query)
+
+const { data, error } = useSWR<fetchDataType>(`https://api.dev.coinghost.com/blogs${'?'+query}`, fetcher)
 if (error) return <div>failed to load</div>
 if (!data) return <div>loading...</div>
 

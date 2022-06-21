@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import { useState } from 'react';
+import Link from "next/link";
+
 
 interface FilterChange {
     changFilter : boolean;
@@ -9,6 +11,7 @@ interface FilterChange {
 export default function Filter()  {
 
 const [changFilter, setChangefilter] = useState(false)
+const [pageNum, setPageNum] = useState(1)
 
 return (
     <FilterContainer>
@@ -19,18 +22,33 @@ return (
             </div>
         </WriteBox>
         <ContentFilter>
-            <AllFilterBtn 
-            onClick={()=>setChangefilter(false)}
-            changFilter={changFilter}
-            >
-            전체글
-            </AllFilterBtn>
-            <PopularFilterBtn 
-            onClick={()=>setChangefilter(true)}
-            changFilter={changFilter}
-            >
-            인기글
-            </PopularFilterBtn>
+            <Link href={{ pathname:'blogs', query: '' }}>
+                <AllFilterBtn 
+                onClick={()=>
+                {
+                setChangefilter(false)
+                setPageNum(1)
+                }
+                
+                }
+                changFilter={changFilter}
+                >
+                전체글
+                </AllFilterBtn>
+            </Link>
+            <Link href={{ pathname:'blogs', query: { limit:'10', page:`${pageNum}`, orderBy:'likes' } }}>
+                <PopularFilterBtn 
+                onClick={()=>
+                {
+                setChangefilter(true)
+                setPageNum(pageNum+1)
+                }
+                }
+                changFilter={changFilter}
+                >
+                인기글
+                </PopularFilterBtn>
+            </Link>
         </ContentFilter>
     </FilterContainer>
 );

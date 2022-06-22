@@ -33,5 +33,4 @@ export default function Home() {
 
 const Container = styled.div`
 	width: 750px;
-	background-color: #eeee;
 `;

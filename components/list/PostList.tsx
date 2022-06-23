@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export interface PostProps {
 	id: number;
@@ -19,7 +20,7 @@ export default function PostList({ posts }: Props) {
 	const postTime = (value: string) => {
 		const today = new Date();
 		const timeValue = new Date(value);
-		const betweenTime : any = Math.floor(
+		const betweenTime: any = Math.floor(
 			(today.getTime() - timeValue.getTime()) / 1000 / 60,
 		);
 		const betweenTimeHour = Math.floor(betweenTime / 60);
@@ -49,47 +50,49 @@ export default function PostList({ posts }: Props) {
 	};
 
 	return (
-		<Container key={posts.id}>
-			<PostFlex>
-				<ImgWrap>
-					<Image
-						src={posts.defaultThumbnail.url}
-						width={130}
-						height={100}
-						alt="thumbnail"
-					/>
-				</ImgWrap>
-				<Post>
-					<PostContent>{posts.title}</PostContent>
-					<PostFlex>
-						<PostInfoContainer>
-							<InfoNick>{posts.creator?.nickName}</InfoNick>
-							<InfoTime>{postTime(posts.createdAt)}</InfoTime>
-						</PostInfoContainer>
-						<PostInfoContainer>
-							<ImgWrap>
-								<Image
-									src="/images/heart.png"
-									width={30}
-									height={30}
-									alt="heart"
-								/>
-							</ImgWrap>
-							<LikeNum>{posts.likes}</LikeNum>
-							<ImgWrap>
-								<Image
-									src="/images/댓글.png"
-									width={28}
-									height={27}
-									alt="chat"
-								/>
-							</ImgWrap>
-							<LikeNum>{posts.comments}</LikeNum>
-						</PostInfoContainer>
-					</PostFlex>
-				</Post>
-			</PostFlex>
-		</Container>
+		<Link href="/[id]" as={`/${posts.id}`}>
+			<Container key={posts.id}>
+				<PostFlex>
+					<ImgWrap>
+						<Image
+							src={posts.defaultThumbnail.url}
+							width={130}
+							height={100}
+							alt="thumbnail"
+						/>
+					</ImgWrap>
+					<Post>
+						<PostContent>{posts.title}</PostContent>
+						<PostFlex>
+							<PostInfoContainer>
+								<InfoNick>{posts.creator?.nickName}</InfoNick>
+								<InfoTime>{postTime(posts.createdAt)}</InfoTime>
+							</PostInfoContainer>
+							<PostInfoContainer>
+								<ImgWrap>
+									<Image
+										src="/images/heart.png"
+										width={30}
+										height={30}
+										alt="heart"
+									/>
+								</ImgWrap>
+								<LikeNum>{posts.likes}</LikeNum>
+								<ImgWrap>
+									<Image
+										src="/images/댓글.png"
+										width={28}
+										height={27}
+										alt="chat"
+									/>
+								</ImgWrap>
+								<LikeNum>{posts.comments}</LikeNum>
+							</PostInfoContainer>
+						</PostFlex>
+					</Post>
+				</PostFlex>
+			</Container>
+		</Link>
 	);
 }
 
@@ -110,6 +113,7 @@ const PostFlex = styled.div`
 `;
 
 const ImgWrap = styled.div`
+	cursor: pointer;
 	img {
 		border-radius: 5px;
 	}
@@ -120,6 +124,7 @@ const Post = styled.div`
 `;
 
 const PostContent = styled.span`
+	cursor: pointer;
 	display: -webkit-box;
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
@@ -148,6 +153,7 @@ const InfoNick = styled.span`
 	font-size: 24px;
 	letter-spacing: -0.6px;
 	color: #5382eb;
+	cursor: pointer;
 `;
 
 const InfoTime = styled.span`

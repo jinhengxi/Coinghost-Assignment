@@ -9,7 +9,7 @@ export default function Home() {
 	const [allBtn, setAllBtn] = useState(true);
 
 	const handleFilter = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (e.currentTarget.id === 'likes') {
+		if (e.currentTarget.id === 'likes') {
 			setAllBtn(false);
 			setLikesBtn(true);
 		}
@@ -24,8 +24,9 @@ export default function Home() {
 		<Layout>
 			<TitleBar />
 			<Filter handleFilter={handleFilter} likesBtn={likesBtn} allBtn={allBtn} />
-			<Posts likesBtn={likesBtn}/>
+			<Posts likesBtn={likesBtn} />
 		</Layout>
 	);
 }
+
 

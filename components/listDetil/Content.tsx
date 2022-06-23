@@ -1,15 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import Image from 'next/image';
+// import Image from 'next/image';
+import { DetailProps } from '../../pages/[id]';
 
-export default function Content() {
+interface Props {
+	data: DetailProps;
+}
+
+export default function Content({ post }: { post: Props }) {
 	return (
 		<Container>
 			<Contents>
-				유저가 글 쓸 때 뭐 따로 설정한거 없으면
-				<br />
-				그냥 Spoqa Sans Neo 레귤러 25px로 나오게 해주세요.
-				<Image src="/images/푸름.png" width={666} height={360} alt="profile" />
+				{post.data.contents}
+				{/* <Image src="/images/푸름.png" width={666} height={360} alt="profile" /> */}
 			</Contents>
 		</Container>
 	);

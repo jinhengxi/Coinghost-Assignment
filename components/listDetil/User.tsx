@@ -2,17 +2,27 @@ import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { FiMoreVertical } from "react-icons/fi";
+import { DetailProps } from '../../pages/[id]';
 
-export default function User() {
+interface Props {
+	data: DetailProps;
+}
+
+export default function User({ post }: { post: Props }) {
+
+	const timeCut = (value: string) =>{
+		return value.replace('T', ' ').substring(0, 16)
+	}
+
 	return (
 		<Container>
-			<Title>제목입니다. 크기는 33px입니다.</Title>
+			<Title>{post.data.title}</Title>
 			<ProfileBox>
 				<Image src="/images/detail.png" width={80} height={80} alt="profile" />
 				<ProfileInfo>
-					<NickName>👻코드민</NickName>
-					<Date>2021.10.12 18:22</Date>
-					<Views>조회수 134</Views>
+					<NickName>{post.data.creator.nickName}</NickName>
+					<Date>{timeCut(post.data.createdAt)}</Date>
+					<Views>조회수 {post.data.views}</Views>
 				</ProfileInfo>
 				<Vertical>
 					<VeticalIcon/>
@@ -71,7 +81,7 @@ const Views = styled.span`
 
 const Vertical = styled.div`
 	display: flex;
-	margin: 25px 0 0 245px;
+	margin: 25px 0 0 220px;
 `;
 
 const VeticalIcon = styled(FiMoreVertical)`

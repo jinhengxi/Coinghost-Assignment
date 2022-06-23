@@ -6,7 +6,7 @@ import { PostProps } from './PostList';
 import styled from 'styled-components';
 
 interface Porps {
-	data:	PostProps
+	data: PostProps;
 }
 
 export default function Posts({ likesBtn }: { likesBtn: boolean }) {
@@ -55,3 +55,5 @@ const TargetElement = styled.button`
 	width: 100%;
 	height: 100px;
 `;
+
+

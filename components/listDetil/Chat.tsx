@@ -1,21 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
+import { DetailProps } from '../../pages/[id]';
 
-export default function Chat() {
+interface Props {
+	data: DetailProps;
+}
+
+export default function Chat({ post }: { post: Props }) {
 	return (
 		<Container>
 			<ChatBox>
 				<Post>댓글</Post>
 				<PostIconBox>
 					<Image src="/images/heart.png" width={39} height={39} alt="heart" />
-					<div className="number">13</div>
+					<div className="number">{post.data.likes}</div>
 					<Image src="/images/댓글.png" width={36} height={36} alt="chat" />
-					<div className="number">12</div>
+					<div className="number">{post.data.comments}</div>
 				</PostIconBox>
 			</ChatBox>
 			<PostBox>
-				<NickName>서제리</NickName>
+				<NickName>{post.data.creator.nickName}</NickName>
 				<PlaceHold>※ 댓글에 답글이 달렸을 시 수정/삭제가 불가합니다.</PlaceHold>
 				<PostBtn>등록</PostBtn>
 			</PostBox>

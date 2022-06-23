@@ -8,3 +8,4 @@ export const BASE_URL = '  https://api.dev.coinghost.com';
 export const API = {
     BLOGS: `${BASE_URL}/blogs`,
   };
+

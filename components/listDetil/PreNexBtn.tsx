@@ -1,22 +1,44 @@
 import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
+import Link from 'next/link';
 
-export default function PreNexBtn() {
+interface PlusProps {
+	nextID: number;
+	nextTitle: string;
+	nextCreatedAt: string;
+	previousID: number;
+	previousTitle: string;
+	previousCreatedAt: string;
+}
+
+export default function PreNexBtn({ post }: { post: PlusProps }) {
+	const timeCut = (value: string) => {
+		return value.replace('T', ' ').substring(0, 16);
+	};
 	return (
 		<Container>
+			<Link href="/[id]" as={`${post.previousID}`}>
 			<Button>
 				<Image src="/images/다각형1.png" width={20} height={15} alt="profile" />
 				<PrePost>이전글</PrePost>
-				<PreTitle>이전글로 이동하게 해주세요</PreTitle>
-				<Date>2021.10.12</Date>
+				<PreTitle>{post.previousTitle}</PreTitle>
+				<Date>{timeCut(post.previousCreatedAt)}</Date>
 			</Button>
-			<NextBtn>
-				<Image src="/images/다각형2.png" width={20} height={15} alt="profile" />
-				<PrePost>다음글</PrePost>
-				<PreTitle>다음글로 이동하게 해주세요 이전글 없으면</PreTitle>
-				<Date>2021.10.12</Date>
-			</NextBtn>
+			</Link>
+			<Link href="/[id]" as={`${post.nextID}`}>
+				<NextBtn>
+					<Image
+						src="/images/다각형2.png"
+						width={20}
+						height={15}
+						alt="profile"
+					/>
+					<PrePost>다음글</PrePost>
+					<PreTitle>{post.nextTitle}</PreTitle>
+					<Date>{timeCut(post.nextCreatedAt)}</Date>
+				</NextBtn>
+			</Link>
 		</Container>
 	);
 }
@@ -28,6 +50,7 @@ const Button = styled.div`
 	display: flex;
 	align-items: center;
 	margin-bottom: 20px;
+	cursor: pointer;
 `;
 const PrePost = styled.div`
 	font-size: 22px;
@@ -39,7 +62,7 @@ const PreTitle = styled.div`
 	display: -webkit-box;
 	-webkit-line-clamp: 1;
 	-webkit-box-orient: vertical;
-	width: 400px;
+	width: 330px;
 	font-size: 22px;
 	letter-spacing: -0.55px;
 	margin: 0 22px;

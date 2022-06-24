@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import styled from 'styled-components';
 
 interface Props{
@@ -9,7 +11,9 @@ export default function SignUpBtn({isAllChecked} : Props ) {
 	return (
 		<Container>
 			<Button>취소</Button>
-            <NextBtn isAllChecked={isAllChecked}>다음</NextBtn>
+			<Link href='/signUp/register'>
+            	<NextBtn isAllChecked={isAllChecked}>다음</NextBtn>
+			</Link>
 		</Container>
 	);
 }
@@ -17,7 +21,7 @@ export default function SignUpBtn({isAllChecked} : Props ) {
 const Container = styled.div`
 	margin-bottom: 32px;
 `;
-const Button = styled.button`
+const Button = styled.a`
 	width: 240px;
 	height: 50px;
     font-size: 16px;
@@ -30,11 +34,11 @@ const Button = styled.button`
 
 const NextBtn = styled(Button)<{ isAllChecked : boolean}>`
 	border: none;
-    background-color: #c3d4fc;
-    color: #909090;
     margin-left: 10px;
 
+	cursor:	${({ isAllChecked }) => (isAllChecked ? 'pointer' : 'default')};
 	background-color: ${({ isAllChecked }) =>
-		isAllChecked ? '#5382eb' : 'c3d4f'};
+		isAllChecked ? '#5382eb' : '#c3d4fc'};
 	color: ${({ isAllChecked }) => (isAllChecked ? '#fff' : '#909090')};
+	
 `

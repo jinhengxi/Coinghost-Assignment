@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { Props } from '../../../pages/signUp/signUp'
+
+interface Props {
+	id: number;
+	title: string;
+	content: string;
+}
 
 interface EssentialProps {
 	el: Props;

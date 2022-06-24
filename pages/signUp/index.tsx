@@ -1,17 +1,12 @@
-import styled from 'styled-components';
-import SignUpHead from '../../components/commons/signup/SignUpHead';
-import AllCheck from '../../components/commons/signup/AllCheck';
-import Essential from '../../components/commons/signup/Essential';
-import Select from '../../components/commons/signup/Select';
-import SignUpBtn from '../../components/commons/signup/SignUpBtn';
-import Footer from '../../components/commons/signup/Footer';
+import SignUpHead from '../../components/commons/SignUpHead';
+import AllCheck from '../../components/signUp/AllCheck';
+import Essential from '../../components/signUp/Essential';
+import Select from '../../components/signUp/Select';
+import SignUpBtn from '../../components/signUp/SignUpBtn';
+import Footer from '../../components/signUp/Footer';
 import { useState } from 'react';
 
-export interface Props {
-	id: number;
-	title: string;
-	content: string;
-}
+
 
 export default function SignUp() {
 	const [checkedItems, setCheckedItems] = useState<any>(new Set());
@@ -19,7 +14,6 @@ export default function SignUp() {
 
 	const checkedItemHandler = (id: number) => {
 		if (!checkedItems.has(id)) {
-            setCheckedItems(new Set())
 			checkedItems.add(id);
 			setCheckedItems(checkedItems);
 
@@ -35,7 +29,7 @@ export default function SignUp() {
 	const [isAllChecked, setIsAllChecked] = useState(false);
 	const allCheckedHandler = (isChecked : boolean) => {
 		if (isChecked) {
-			setCheckedItems(new Set(SIGN_UP.map(({ id }) => id)));
+			setCheckedItems(new Set(signUpData.map(({ id }) => id)));
 			setIsAllChecked(true);
 		} else { 
 			checkedItems.clear();
@@ -44,9 +38,9 @@ export default function SignUp() {
 	};
 
 	return (
-		<Header>
+		<SignUpHead>
 			<AllCheck allCheckedHandler={allCheckedHandler}/>
-			{SIGN_UP.map((el) => (
+			{signUpData.map((el) => (
 				<Essential
 					el={el}
 					key={el.id}
@@ -57,13 +51,11 @@ export default function SignUp() {
 			<Select />
 			<SignUpBtn isAllChecked={isAllChecked}/>
 			<Footer />
-		</Header>
+		</SignUpHead>
 	);
 }
 
-const Header = styled(SignUpHead)``;
-
-const SIGN_UP: Props[] = [
+const signUpData = [
 	{
 		id: 1,
 		title: '코인고스트 이용약관 동의',

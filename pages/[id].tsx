@@ -5,7 +5,7 @@ import { API } from '../utils/fetcher';
 import Title from '../components/listDetil/Title';
 import User from '../components/listDetil/User';
 import Content from '../components/listDetil/Content';
-import DetileBtn from '../components/listDetil/DetileBtn';
+import DetileBtn from '../components/listDetil/BackList';
 import Banner from '../components/listDetil/Banner';
 import Chat from '../components/listDetil/Chat';
 import PreNexBtn from '../components/listDetil/PreNexBtn';

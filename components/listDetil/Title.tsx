@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
 
+//style components Link 적용해보기
 
 export default function title() {
 	return (

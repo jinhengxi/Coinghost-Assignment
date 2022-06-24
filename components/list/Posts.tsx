@@ -1,9 +1,11 @@
-import { fetcher, API } from '../../utils/fetcher';
-import PostList from './PostList';
-import useSWRInfinite from 'swr/infinite';
 import { useEffect, useState } from 'react';
-import { PostProps } from './PostList';
+import useSWRInfinite from 'swr/infinite';
+
 import styled from 'styled-components';
+import PostList from './PostList';
+import { PostProps } from './PostList';
+import { fetcher, API } from '../../utils/fetcher';
+
 
 interface Porps {
 	data: PostProps;
@@ -55,5 +57,3 @@ const TargetElement = styled.button`
 	width: 100%;
 	height: 100px;
 `;
-
-

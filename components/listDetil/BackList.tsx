@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 
-//name수정, 링크 스타일드 컴포넌트
+//style components Link 적용해보기
 
 export default function DetileBtn() {
 	return (

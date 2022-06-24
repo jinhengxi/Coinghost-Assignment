@@ -1,13 +1,18 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import { useState } from 'react';
 
-export default function Select() {
+
+export default function Select({}) {
+
+	const [bChecked, setChecked] = useState(false);
+
 	return (
 		<Container>
 			<SelectCheck>
-				<CheckImg>
+				<CheckImg onClick={()=>setChecked(!bChecked)}>
 					<Image
-						src="/images/체크박스.png"
+						src={bChecked ? '/images/체크박스3.png' : '/images/체크박스2.png'}
 						width={20}
 						height={20}
 						alt="checkbox"

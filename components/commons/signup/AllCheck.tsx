@@ -1,14 +1,27 @@
 import styled from 'styled-components';
 import Image from 'next/image';
-import signUpHeader from './SignUpHead';
+import { useState } from 'react';
 
-export default function AllCheck() {
+interface EssentialProps {
+	allCheckedHandler: (
+		isChecked: boolean,
+	) => void;
+}
+
+export default function AllCheck({allCheckedHandler}:EssentialProps) {
+
+	const [bChecked, setChecked] = useState(false);
+	const checkHandler = (e :  any) => {
+		setChecked(!bChecked);
+		allCheckedHandler(!bChecked);
+	};
+
 	return (
 		<>
 			<AllChecking>
-				<CheckImg>
+				<CheckImg onClick={(e) => checkHandler(e)}>
 					<Image
-						src="/images/체크박스.png"
+						src={bChecked ? '/images/체크박스3.png' : '/images/체크박스.png'}
 						width={20}
 						height={20}
 						alt="checkbox"

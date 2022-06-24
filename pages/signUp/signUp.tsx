@@ -14,33 +14,34 @@ export interface Props {
 }
 
 export default function SignUp() {
-	const [checkedItems, setCheckedItems] = useState(new Set());
+	const [checkedItems, setCheckedItems] = useState<any>(new Set());
 
-	const checkedItemHandler = (id: number, isChecked: boolean) => {
-		if (isChecked) {
+
+	const checkedItemHandler = (id: number) => {
+		if (!checkedItems.has(id)) {
+            setCheckedItems(new Set())
 			checkedItems.add(id);
 			setCheckedItems(checkedItems);
-		} else if (!isChecked && checkedItems.has(id)) {
+
+		} else if (checkedItems.has(id)) {
 			checkedItems.delete(id);
 			setCheckedItems(checkedItems);
 		}
+        if(checkedItems.size===3){
+            setIsAllChecked(true)
+        }
 	};
-
 
 	const [isAllChecked, setIsAllChecked] = useState(false);
 	const allCheckedHandler = (isChecked : boolean) => {
 		if (isChecked) {
 			setCheckedItems(new Set(SIGN_UP.map(({ id }) => id)));
 			setIsAllChecked(true);
-		} else {
+		} else { 
 			checkedItems.clear();
-			// setCheckedItems(setCheckedItems);
 			setIsAllChecked(false);
 		}
 	};
-    
-
-
 
 	return (
 		<Header>
@@ -54,15 +55,13 @@ export default function SignUp() {
 				/>
 			))}
 			<Select />
-			<SignUpBtn />
+			<SignUpBtn isAllChecked={isAllChecked}/>
 			<Footer />
 		</Header>
 	);
 }
 
 const Header = styled(SignUpHead)``;
-
-const ALL = styled(AllCheck)``;
 
 const SIGN_UP: Props[] = [
 	{

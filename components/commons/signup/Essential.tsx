@@ -7,7 +7,6 @@ interface EssentialProps {
 	el: Props;
 	checkedItemHandler: (
 		id: number,
-		isChecked: boolean,
 	) => void;
 	isAllChecked: boolean;
 }
@@ -17,7 +16,7 @@ export default function Essential({ el, checkedItemHandler, isAllChecked }: Esse
 
 	const checkHandler = (e :  any) => {
 		setChecked(!bChecked);
-		checkedItemHandler(el.id, e.target.checked);
+		checkedItemHandler(el.id);
 	};
 	const allCheckHandler = () => setChecked(isAllChecked);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -41,7 +40,7 @@ export default function Essential({ el, checkedItemHandler, isAllChecked }: Esse
 				</EssentialContent>
 			</EssentialCheck>
 			<ContentsBox>
-				<p>{el.content}</p>
+				<p>{el.content}</p> 
 			</ContentsBox>
 		</>
 	);

@@ -11,7 +11,7 @@ interface EssentialProps {
 export default function AllCheck({allCheckedHandler}:EssentialProps) {
 
 	const [bChecked, setChecked] = useState(false);
-	const checkHandler = (e :  any) => {
+	const checkHandler = () => {
 		setChecked(!bChecked);
 		allCheckedHandler(!bChecked);
 	};
@@ -19,7 +19,7 @@ export default function AllCheck({allCheckedHandler}:EssentialProps) {
 	return (
 		<>
 			<AllChecking>
-				<CheckImg onClick={(e) => checkHandler(e)}>
+				<CheckImg onClick={() => checkHandler()}>
 					<Image
 						src={bChecked ? '/images/체크박스3.png' : '/images/체크박스.png'}
 						width={20}

@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
-export default function SignUpBtn() {
+interface Props{
+	isAllChecked : boolean;
+}
+
+export default function SignUpBtn({isAllChecked} : Props ) {
+
 	return (
 		<Container>
 			<Button>취소</Button>
-            <NextBtn>다음</NextBtn>
+            <NextBtn isAllChecked={isAllChecked}>다음</NextBtn>
 		</Container>
 	);
 }
@@ -23,8 +28,13 @@ const Button = styled.button`
     cursor: pointer;
 `;
 
-const NextBtn = styled(Button)`
+const NextBtn = styled(Button)<{ isAllChecked : boolean}>`
+	border: none;
     background-color: #c3d4fc;
     color: #909090;
     margin-left: 10px;
+
+	background-color: ${({ isAllChecked }) =>
+		isAllChecked ? '#5382eb' : 'c3d4f'};
+	color: ${({ isAllChecked }) => (isAllChecked ? '#fff' : '#909090')};
 `

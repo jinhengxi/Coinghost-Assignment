@@ -16,7 +16,7 @@ export default function Posts({ likesBtn }: { likesBtn: boolean }) {
 		null,
 	);
 	const getKey = (pageIndex: number, previousPageData: any) => {
-		if (previousPageData && !previousPageData.data) return null;
+		if (previousPageData && !previousPageData.data.length) return null;
 		let orderBy = '';
 		if (likesBtn) {
 			orderBy = '&orderBy=likes';
@@ -26,7 +26,7 @@ export default function Posts({ likesBtn }: { likesBtn: boolean }) {
 
 	const { data, setSize } = useSWRInfinite<Porps>(getKey, fetcher);
 	const posts = data ? data.map((data) => data?.data).flat() : [];
-
+	
 	useEffect(() => {
 		if (!target) return;
 		const observer = new IntersectionObserver(onIntersect, {

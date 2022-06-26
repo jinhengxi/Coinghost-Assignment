@@ -107,15 +107,14 @@ export default function Registerinput() {
 					{...register('password', {
 						required: true,
 						minLength: 8,
-						maxLength: 16,
 					})}
 				/>
 				<Icon />
 				{errors.password && errors.password.type === 'required' && (
 					<p>패스워드를 입력해 주세요.</p>
 				)}
-				{errors.password && errors.password.type === 'maxLength' && (
-					<p>8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.</p>
+				{errors.password && errors.password.type === 'minLength' && (
+					<p>패스워드는 8자 이상 입력해 주세요.</p>
 				)}
 			</Position>
 			<TitleBox>패스워드 재확인</TitleBox>

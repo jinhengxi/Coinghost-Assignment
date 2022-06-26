@@ -6,7 +6,6 @@ import Registerinput from '../../components/register/Registerinput';
 
 export default function register() {
 
-
 	return (
 		<SignUpHead>
 			<MakeId />

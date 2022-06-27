@@ -19,7 +19,7 @@ interface EssentialProps {
 export default function Essential({ el, checkedItemHandler, isAllChecked }: EssentialProps) {
 	const [bChecked, setChecked] = useState(false);
 
-	const checkHandler = (e :  any) => {
+	const checkHandler = () => {
 		setChecked(!bChecked);
 		checkedItemHandler(el.id);
 	};
@@ -32,7 +32,7 @@ export default function Essential({ el, checkedItemHandler, isAllChecked }: Esse
 	return (
 		<>
 			<EssentialCheck key={el.id}>
-				<CheckImg onClick={(e) => checkHandler(e)}>
+				<CheckImg onClick={checkHandler}>
 					<Image
 						src={bChecked ? '/images/체크박스3.png' : '/images/체크박스2.png'}
 						width={20}

@@ -21,6 +21,7 @@ export default function SignUpBtn({isAllChecked} : Props ) {
 const Container = styled.div`
 	margin-bottom: 32px;
 `;
+
 const Button = styled.button`
 	width: 230px;
 	height: 50px;
@@ -37,10 +38,8 @@ const NextBtn = styled(Button)<{ isAllChecked : boolean}>`
     margin-left: 10px;
 
 	pointer-events:	${({ isAllChecked }) => (isAllChecked ? 'auto' : 'none')};
-
 	background-color: ${({ isAllChecked }) =>
 		isAllChecked ? '#5382eb' : '#c3d4fc'};
-
 	color: ${({ isAllChecked }) => (isAllChecked ? '#fff' : '#909090')}; 
 	
 `

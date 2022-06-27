@@ -12,7 +12,7 @@ interface FormValue {
 	password_confirm: string;
 }
 
-export default function Registerinput() {
+export default function Register() {
 	const [authData, setAuthData] = useState(false);
 	const {
 		register,
@@ -207,8 +207,6 @@ const PhoneBtn = styled(Button)<{authData : boolean}>`
 	cursor: ${({ authData }) => (!authData ? 'pointer' : 'none')};
 	background-color: ${({ authData }) => (!authData ? '#5382eb' : '#c3d4fc')};
 	color: ${({ authData }) => (!authData ? '#fff' : '#909090')};
-
-
 `;
 
 const NumInput = styled(Input)`

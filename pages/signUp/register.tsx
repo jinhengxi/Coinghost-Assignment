@@ -1,7 +1,7 @@
 
 import MakeId from '../../components/register/MakeId';
 import SignUpHead from '../../components/commons/SignUpHead';
-import Registerinput from '../../components/register/Registerinput';
+import Register from '../../components/register/Register';
 
 
 export default function register() {
@@ -9,7 +9,7 @@ export default function register() {
 	return (
 		<SignUpHead>
 			<MakeId />
-			<Registerinput />
+			<Register />
 		</SignUpHead>
 	);
 }

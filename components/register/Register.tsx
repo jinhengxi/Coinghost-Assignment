@@ -152,7 +152,7 @@ export default function Register() {
 			<TitleBox>프로필 사진(선택)</TitleBox>
 			<ProfileInput />
 			<PropfileBtn>사진변경</PropfileBtn>
-			<RegisterBtn onClick={handleSubmit(onClickHandler)} isValid={isValid} authData={authData}>
+			<RegisterBtn onClick={handleSubmit(onClickHandler)} isValid={isValid&&authData}>
 				<Link href='/signUp/signedUp'>
 					<a>가입하기</a>
 				</Link>
@@ -288,7 +288,7 @@ const PropfileBtn = styled(Button)`
 	color: #fff;
 `;
 
-const RegisterBtn = styled.button<{ isValid: boolean, authData: boolean }>`
+const RegisterBtn = styled.button<{ isValid: boolean }>`
 	margin: 60px 0;
 	height: 50px;
 	padding: 16px 216px 13px;
@@ -302,7 +302,7 @@ const RegisterBtn = styled.button<{ isValid: boolean, authData: boolean }>`
 	color: ${({ isValid }) => (isValid ? '#fff' : '#909090')};
 
 	a{
-		pointer-events: ${({ authData }) => (authData ? 'block' : 'none')};
+		pointer-events: ${({ isValid }) => (isValid ? 'block' : 'none')};
 	}
 
 `;

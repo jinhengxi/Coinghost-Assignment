@@ -133,6 +133,9 @@ export default function Register() {
 					})}
 				/>
 				<Icon />
+				{errors.password_confirm && errors.password_confirm.type === 'required' && (
+					<p>패스워드가 일치하지 않습니다.</p>
+				)}
 				{errors.password_confirm &&
 					errors.password_confirm.type === 'validate' && (
 						<p>패스워드가 일치하지 않습니다.</p>
@@ -152,11 +155,11 @@ export default function Register() {
 			<TitleBox>프로필 사진(선택)</TitleBox>
 			<ProfileInput />
 			<PropfileBtn>사진변경</PropfileBtn>
-			<RegisterBtn onClick={handleSubmit(onClickHandler)} isValid={isValid&&authData}>
-				<Link href='/signUp/signedUp'>
-					<a>가입하기</a>
-				</Link>
-			</RegisterBtn>
+				<RegisterBtn onClick={handleSubmit(onClickHandler)} isValid={isValid&&authData}>
+					<Link href='/signUp/signedUp'>
+						<a>가입하기</a>
+					</Link>
+				</RegisterBtn>
 		</Container>
 	);
 }

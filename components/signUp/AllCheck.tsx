@@ -1,14 +1,14 @@
-import styled from 'styled-components';
 import Image from 'next/image';
 import { useState } from 'react';
+import styled from 'styled-components';
 
-interface EssentialProps {
+interface Props {
 	allCheckedHandler: (
 		isChecked: boolean,
 	) => void;
 }
 
-export default function AllCheck({allCheckedHandler}:EssentialProps) {
+export default function AllCheck({allCheckedHandler}:Props) {
 
 	const [bChecked, setChecked] = useState(false);
 	const checkHandler = () => {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import useSWRInfinite from 'swr/infinite';
-
 import styled from 'styled-components';
+
 import PostList from './PostList';
 import { PostProps } from './PostList';
 import { fetcher, API } from '../../utils/fetcher';

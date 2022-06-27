@@ -1,9 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
+import styled from 'styled-components';
 
-//style components Link 적용해보기
 
 export default function title() {
 	return (

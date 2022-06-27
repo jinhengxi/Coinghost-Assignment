@@ -1,10 +1,10 @@
+import { useState } from 'react';
 import SignUpHead from '../../components/commons/SignUpHead';
 import AllCheck from '../../components/signUp/AllCheck';
 import Essential from '../../components/signUp/Essential';
 import Select from '../../components/signUp/Select';
 import SignUpBtn from '../../components/signUp/SignUpBtn';
 import Footer from '../../components/signUp/Footer';
-import { useState } from 'react';
 
 
 

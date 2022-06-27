@@ -1,6 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
 import Image from 'next/image';
+import styled from 'styled-components';
 import { FiMoreVertical } from "react-icons/fi";
 import { DetailProps } from '../../pages/[id]';
 

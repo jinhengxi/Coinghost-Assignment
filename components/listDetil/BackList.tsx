@@ -1,8 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
 import Link from 'next/link';
-
-//style components Link 적용해보기
+import styled from 'styled-components';
 
 export default function DetileBtn() {
 	return (

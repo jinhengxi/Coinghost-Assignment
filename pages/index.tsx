@@ -1,8 +1,8 @@
+import { useState } from 'react';
 import TitleBar from '../components/list/TitleBar';
 import Filter from '../components/list/ListTab';
 import Posts from '../components/list/Posts';
 import { Layout } from '../components/commons/Layout';
-import { useState } from 'react';
 
 export default function Home() {
 	const [likesBtn, setLikesBtn] = useState(false);

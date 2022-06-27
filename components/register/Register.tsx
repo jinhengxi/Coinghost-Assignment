@@ -1,4 +1,5 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
+import Link from 'next/link';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { AiOutlineEyeInvisible } from 'react-icons/ai';
@@ -25,7 +26,12 @@ export default function Register() {
 	passwordRef.current = watch('password');
 
 	const onClickHandler: SubmitHandler<FormValue> = (data) => {
-		console.log(data);
+		if(!authData){
+			alert('전화번호 인증을 해주세요')
+			return;
+		}else{
+			console.log(data);
+		}
 	};
 
 	const postRegister = () => {
@@ -146,8 +152,10 @@ export default function Register() {
 			<TitleBox>프로필 사진(선택)</TitleBox>
 			<ProfileInput />
 			<PropfileBtn>사진변경</PropfileBtn>
-			<RegisterBtn onClick={handleSubmit(onClickHandler)} isValid={isValid}>
-				가입하기
+			<RegisterBtn onClick={handleSubmit(onClickHandler)} isValid={isValid} authData={authData}>
+				<Link href='/signUp/signedUp'>
+					<a>가입하기</a>
+				</Link>
 			</RegisterBtn>
 		</Container>
 	);
@@ -280,7 +288,7 @@ const PropfileBtn = styled(Button)`
 	color: #fff;
 `;
 
-const RegisterBtn = styled.button<{ isValid: boolean }>`
+const RegisterBtn = styled.button<{ isValid: boolean, authData: boolean }>`
 	margin: 60px 0;
 	height: 50px;
 	padding: 16px 216px 13px;
@@ -292,4 +300,9 @@ const RegisterBtn = styled.button<{ isValid: boolean }>`
 	cursor: ${({ isValid }) => (isValid ? 'pointer' : 'defualt')};
 	background-color: ${({ isValid }) => (isValid ? '#5382eb' : '#c3d4fc')};
 	color: ${({ isValid }) => (isValid ? '#fff' : '#909090')};
+
+	a{
+		pointer-events: ${({ authData }) => (authData ? 'block' : 'none')};
+	}
+
 `;

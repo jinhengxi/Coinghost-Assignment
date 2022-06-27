@@ -71,6 +71,7 @@ export default function Register() {
 			});
 	};
 
+	
 	return (
 		<Container>
 			<CountryInput>

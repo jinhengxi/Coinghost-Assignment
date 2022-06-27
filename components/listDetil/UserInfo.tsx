@@ -7,12 +7,11 @@ interface Props {
 	data: DetailProps;
 }
 
-export default function User({ post }: { post: Props }) {
+export default function UserInfo({ post }: { post: Props }) {
 
 	const timeCut = (value: string) =>{
 		return value.replace('T', ' ').substring(0, 16)
 	}
-
 	return (
 		<Container>
 			<Title>{post.data.title}</Title>

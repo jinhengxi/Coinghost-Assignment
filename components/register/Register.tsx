@@ -69,9 +69,9 @@ export default function Register() {
 					alert(data.data.message);
 				}
 			});
+		//catch
 	};
 
-	
 	return (
 		<Container>
 			<CountryInput>
@@ -87,7 +87,7 @@ export default function Register() {
 				placeholder="전화번호 입력"
 				{...register('phone', { required: true, minLength: 10 })}
 			/>
-			<PhoneBtn onClick={postRegister} authData={authData}>
+			<PhoneBtn onClick={postRegister} disabled={authData}>
 				인증번호 받기
 			</PhoneBtn>
 			{errors.phone && errors.phone.type === 'required' && (
@@ -190,6 +190,7 @@ const Korea = styled.div`
 	color: #2b2b2b;
 	font-weight: bold;
 `;
+
 const Input = styled.input`
 	height: 50px;
 	padding: 16px 200px 16px 15px;
@@ -198,6 +199,7 @@ const Input = styled.input`
 	background-color: #fff;
 	width: 350px;
 `;
+
 const Button = styled.button`
 	width: 130px;
 	height: 50px;
@@ -210,15 +212,17 @@ const Button = styled.button`
 const PhoneInput = styled(Input)`
 	margin-top: 15px;
 `;
-const PhoneBtn = styled(Button)<{authData : boolean}>`
+
+const PhoneBtn = styled(Button)`
 	margin: 15px 0px 0px 10px;
 	font-size: 14px;
-	color: #fff;
+	background-color: #5382eb;
+	color : #fff;
 
-	pointer-events: ${({ authData }) => (!authData ? 'block' : 'none')};
-	cursor: ${({ authData }) => (!authData ? 'pointer' : 'none')};
-	background-color: ${({ authData }) => (!authData ? '#5382eb' : '#c3d4fc')};
-	color: ${({ authData }) => (!authData ? '#fff' : '#909090')};
+	&:disabled{
+		background-color: #c3d4fc;
+		color : #909090;
+	}
 `;
 
 const NumInput = styled(Input)`
@@ -229,13 +233,11 @@ const NumBtn = styled(Button)<{authData : string}>`
 	background-color: #c3d4fc;
 	margin-left: 10px;
 	font-size: 14px;
-	color: #909090;
 
 	pointer-events: ${({ authData }) => (authData ? 'block' : 'none')};
 	cursor: ${({ authData }) => (authData ? 'pointer' : 'none')};
 	background-color: ${({ authData }) => (authData ? '#5382eb' : '#c3d4fc')};
 	color: ${({ authData }) => (authData ? '#fff' : '#909090')};
-
 `;
 
 const TitleBox = styled.div`

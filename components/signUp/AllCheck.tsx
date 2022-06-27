@@ -3,17 +3,17 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 interface Props {
-	allCheckedHandler: (
+	onClickHandler: (
 		isChecked: boolean,
 	) => void;
 }
 
-export default function AllCheck({allCheckedHandler}:Props) {
+export default function AllCheck({onClickHandler}:Props) {
 
 	const [bChecked, setChecked] = useState(false);
 	const checkHandler = () => {
 		setChecked(!bChecked);
-		allCheckedHandler(!bChecked);
+		onClickHandler(!bChecked);
 	};
 
 	return (

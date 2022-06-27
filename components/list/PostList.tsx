@@ -12,11 +12,10 @@ export interface PostProps {
 	comments: number;
 }
 
-interface Props {
-	posts: PostProps;
+interface Props extends PostProps {
 }
 
-export default function PostList({ posts }: Props) {
+export default function PostList({ id,defaultThumbnail,title ,creator,comments,likes,createdAt }: Props) {
 	const postTime = (value: string) => {
 		const today = new Date();
 		const timeValue = new Date(value);
@@ -50,23 +49,23 @@ export default function PostList({ posts }: Props) {
 	};
 
 	return (
-		<Link href="/[id]" as={`/${posts.id}`}>
-			<Container key={posts.id}>
+		<Link href="/[id]" as={`/${id}`}>
+			<Container key={id}>
 				<PostFlex>
 					<ImgWrap>
 						<Image
-							src={posts.defaultThumbnail.url}
+							src={defaultThumbnail.url}
 							width={130}
 							height={100}
 							alt="thumbnail"
 						/>
 					</ImgWrap>
 					<Post>
-						<PostContent>{posts.title}</PostContent>
+						<PostContent>{title}</PostContent>
 						<PostFlex>
 							<PostInfoContainer>
-								<InfoNick>{posts.creator?.nickName}</InfoNick>
-								<InfoTime>{postTime(posts.createdAt)}</InfoTime>
+								<InfoNick>{creator?.nickName}</InfoNick>
+								<InfoTime>{postTime(createdAt)}</InfoTime>
 							</PostInfoContainer>
 							<PostInfoContainer>
 								<ImgWrap>
@@ -77,7 +76,7 @@ export default function PostList({ posts }: Props) {
 										alt="heart"
 									/>
 								</ImgWrap>
-								<LikeNum>{posts.likes}</LikeNum>
+								<LikeNum>{likes}</LikeNum>
 								<ImgWrap>
 									<Image
 										src="/images/댓글.png"
@@ -86,7 +85,7 @@ export default function PostList({ posts }: Props) {
 										alt="chat"
 									/>
 								</ImgWrap>
-								<LikeNum>{posts.comments}</LikeNum>
+								<LikeNum>{comments}</LikeNum>
 							</PostInfoContainer>
 						</PostFlex>
 					</Post>

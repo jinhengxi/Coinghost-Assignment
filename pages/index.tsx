@@ -5,17 +5,17 @@ import Posts from '../components/list/Posts';
 import { Layout } from '../components/commons/Layout';
 
 export default function Home() {
-	const [likesBtn, setLikesBtn] = useState(false);
-	const [allBtn, setAllBtn] = useState(true);
+	const [isLikesBtn, setIsLikesBtn] = useState(false);
+	const [isAllBtn, setIsAllBtn] = useState(true);
 
 	const handleFilter = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		if (e.currentTarget.id === 'likes') {
-			setAllBtn(false);
-			setLikesBtn(true);
+			setIsAllBtn(false);
+			setIsLikesBtn(true);
 		}
 		if (e.currentTarget.id === 'all') {
-			setLikesBtn(false);
-			setAllBtn(true);
+			setIsLikesBtn(false);
+			setIsAllBtn(true);
 		}
 		return;
 	};
@@ -23,8 +23,8 @@ export default function Home() {
 	return (
 		<Layout>
 			<TitleBar />
-			<Filter handleFilter={handleFilter} likesBtn={likesBtn} allBtn={allBtn} />
-			<Posts likesBtn={likesBtn} />
+			<Filter onClickFilter={handleFilter} isLikesBtn={isLikesBtn} isAllBtn={isAllBtn} />
+			<Posts isLikesBtn={isLikesBtn} />
 		</Layout>
 	);
 }

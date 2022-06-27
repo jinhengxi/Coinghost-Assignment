@@ -7,6 +7,7 @@ interface Props {
 }
 
 export default function Content({ post }: { post: Props }) {
+	//contents 태그 없애서 바인딩
 	return (
 		<Container>
 			<Contents>

@@ -6,26 +6,35 @@ import PostList from './PostList';
 import { PostProps } from './PostList';
 import { fetcher, API } from '../../utils/fetcher';
 
-
-interface Porps {
+interface FetchData {
 	data: PostProps;
 }
 
-export default function Posts({ likesBtn }: { likesBtn: boolean }) {
+interface LikeProps{
+	isLikesBtn : boolean
+}
+//useRef 사용해보기
+export default function Posts({ isLikesBtn }: LikeProps) {
 	const [target, setTarget] = useState<HTMLButtonElement | null | undefined>(
 		null,
 	);
 	const getKey = (pageIndex: number, previousPageData: any) => {
 		if (previousPageData && !previousPageData.data.length) return null;
 		let orderBy = '';
-		if (likesBtn) {
+		if (isLikesBtn) {
 			orderBy = '&orderBy=likes';
 		}
 		return `${API.BLOGS}?&page=${pageIndex + 1}&limit=10${orderBy}`;
 	};
 
-	const { data, setSize } = useSWRInfinite<Porps>(getKey, fetcher);
+	const { data, setSize } = useSWRInfinite<FetchData>(getKey, fetcher);
 	const posts = data ? data.map((data) => data?.data).flat() : [];
+
+	const onIntersect: IntersectionObserverCallback = ([entry]) => {
+		if (entry.isIntersecting) {
+			setSize((p) => p + 1);
+		}
+	};
 	
 	useEffect(() => {
 		if (!target) return;
@@ -37,16 +46,12 @@ export default function Posts({ likesBtn }: { likesBtn: boolean }) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [data, target]);
 
-	const onIntersect: IntersectionObserverCallback = ([entry]) => {
-		if (entry.isIntersecting) {
-			setSize((p) => p + 1);
-		}
-	};
+
 
 	return (
 		<>
 			{posts?.map((posts) => {
-				return <PostList key={posts.id} posts={posts} />;
+				return <PostList key={posts.id} {...posts} />;
 			})}
 			<TargetElement ref={setTarget} />
 		</>

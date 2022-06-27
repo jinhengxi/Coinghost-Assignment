@@ -4,12 +4,12 @@ import styled from 'styled-components';
 
 
 interface Props {
-	allBtn: boolean;
-	likesBtn: boolean;
-	handleFilter: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+	isAllBtn: boolean;
+	isLikesBtn: boolean;
+	onClickFilter: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
-export default function Filter({ allBtn, likesBtn, handleFilter }: Props) {
+export default function Filter({ isLikesBtn, isAllBtn, onClickFilter }: Props) {
 
 	return (
 		<FilterContainer>
@@ -27,18 +27,18 @@ export default function Filter({ allBtn, likesBtn, handleFilter }: Props) {
 			<ContentFilter>
 					<AllFilterBtn
 						onClick={(e) => {
-							handleFilter(e)
+							onClickFilter(e)
 						}}
-						changFilter={allBtn}
+						changFilter={isAllBtn}
                         id='all'
 					>
 						전체글
 					</AllFilterBtn>
 					<PopularFilterBtn
 						onClick={(e) => {
-							handleFilter(e)
+							onClickFilter(e)
 						}}
-						changFilter={likesBtn}
+						changFilter={isLikesBtn}
                         id='likes'
 					>
 						인기글

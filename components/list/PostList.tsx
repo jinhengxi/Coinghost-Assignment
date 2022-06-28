@@ -102,6 +102,7 @@ const Container = styled.div`
 	font-size: 20px;
 	margin: auto;
 `;
+
 const PostFlex = styled.div`
 	display: flex;
 	justify-content: space-between;

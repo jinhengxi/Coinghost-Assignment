@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import styled from 'styled-components';
-import { blogStore } from '../../utils/recoilStart';
 import { useRecoilValue } from 'recoil';
+import { blogStore } from '../../utils/recoilStart';
 
 export default function Chat() {
 	const posts = useRecoilValue(blogStore);

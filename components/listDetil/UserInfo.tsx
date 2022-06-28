@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 import { FiMoreVertical } from 'react-icons/fi';
-
-import { blogStore } from '../../utils/recoilStart';
 import { useRecoilValue } from 'recoil';
+import { blogStore } from '../../utils/recoilStart';
+
 
 export default function UserInfo() {
 	const posts = useRecoilValue(blogStore);

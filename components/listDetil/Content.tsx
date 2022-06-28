@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { blogStore } from '../../utils/recoilStart';
 import { useRecoilValue } from 'recoil';
+import { blogStore } from '../../utils/recoilStart';
 
 export default function Content() {
 	const posts = useRecoilValue(blogStore);

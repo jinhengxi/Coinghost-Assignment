@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
-import { blogStore } from '../../utils/recoilStart';
 import { useRecoilValue } from 'recoil';
+import { blogStore } from '../../utils/recoilStart';
 
 export default function PreNexBtn() {
 	const posts = useRecoilValue(blogStore);

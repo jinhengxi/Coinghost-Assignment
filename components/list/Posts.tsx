@@ -13,7 +13,7 @@ interface FetchData {
 interface LikeProps{
 	isLikesBtn : boolean
 }
-//useRef 사용해보기
+
 export default function Posts({ isLikesBtn }: LikeProps) {
 	const [target, setTarget] = useState<HTMLButtonElement | null | undefined>(
 		null,

@@ -1,8 +1,6 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 
-
-
 interface Props {
 	isAllBtn: boolean;
 	isLikesBtn: boolean;

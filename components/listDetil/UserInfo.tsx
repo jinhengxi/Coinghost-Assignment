@@ -1,26 +1,26 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 import { FiMoreVertical } from "react-icons/fi";
-import { DetailProps } from '../../pages/[id]';
 
-interface Props {
-	data: DetailProps;
-}
+import { blogStore } from '../../utils/recoilStart'
+import { useRecoilValue } from 'recoil';
 
-export default function UserInfo({ post }: { post: Props }) {
+export default function UserInfo() {
+
+	const posts = useRecoilValue(blogStore);
 
 	const timeCut = (value: string) =>{
 		return value.replace('T', ' ').substring(0, 16)
 	}
 	return (
 		<Container>
-			<Title>{post.data.title}</Title>
+			<Title>{posts?.data?.data?.title}</Title>
 			<ProfileBox>
 				<Image src="/images/detail.png" width={80} height={80} alt="profile" />
 				<ProfileInfo>
-					<NickName>{post.data.creator.nickName}</NickName>
-					<Date>{timeCut(post.data.createdAt)}</Date>
-					<Views>조회수 {post.data.views}</Views>
+					<NickName>{posts?.data?.data?.creator.nickName}</NickName>
+					<Date>{timeCut(posts?.data?.data?.createdAt)}</Date>
+					<Views>조회수 {posts?.data?.data?.views}</Views>
 				</ProfileInfo>
 				<Vertical>
 					<VeticalIcon/>

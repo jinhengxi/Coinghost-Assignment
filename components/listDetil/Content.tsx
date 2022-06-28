@@ -1,18 +1,15 @@
 import styled from 'styled-components';
+import { blogStore } from '../../utils/recoilStart'
+import { useRecoilValue } from 'recoil';
 
-import { DetailProps } from '../../pages/[id]';
+export default function Content() {
 
-interface Props {
-	data: DetailProps;
-}
+	const posts = useRecoilValue(blogStore);
 
-export default function Content({ post }: { post: Props }) {
-	//contents 태그 없애서 바인딩
 	return (
 		<Container>
 			<Contents>
-				{post.data.contents}
-				{/* <Image src="/images/푸름.png" width={666} height={360} alt="profile" /> */}
+				{posts.data.data.contents}
 			</Contents>
 		</Container>
 	);

@@ -1,4 +1,8 @@
-import type { GetStaticProps, GetStaticPaths, InferGetStaticPropsType } from 'next';
+import type {
+	GetStaticProps,
+	GetStaticPaths,
+	InferGetStaticPropsType,
+} from 'next';
 
 import { Layout } from '../components/commons/Layout';
 import { API } from '../utils/fetcher';
@@ -11,10 +15,15 @@ import Chat from '../components/listDetil/Chat';
 import PreNexBtn from '../components/listDetil/PreNexBtn';
 import Footer from '../components/listDetil/Footer';
 
+import { useSetRecoilState } from 'recoil';
+import { blogStore } from '../utils/recoilStart';
+import { useEffect } from 'react';
+
 export const getStaticPaths: GetStaticPaths = async () => {
 	const res = await fetch(`${API.BLOGS}`);
 	const post = await res.json();
 	const posts = post.data.data;
+
 	const paths = posts.map((post: { id: number }) => ({
 		params: { id: post.id.toString() },
 	}));
@@ -22,12 +31,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+	console.log(params);
 	const res = await fetch(`${API.BLOGS}/${params?.id}`);
 	const post = await res.json();
 	return { props: { post } };
 };
 
-//중복, 하나로 관리
 export interface DetailProps {
 	id: number;
 	title: string;
@@ -40,20 +49,25 @@ export interface DetailProps {
 	views: number;
 }
 
-//data 전역관리
-export default function detail({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Detail({
+	post,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+
+	const blog = useSetRecoilState(blogStore);
+	useEffect(() => {
+		blog(post);
+	}, [blog, post]);
+
 	return (
 		<Layout background="#5382eb">
 			<Header />
-			<UserInfo post={post.data} />
-			<Content post={post.data}/>
+			<UserInfo />
+			<Content />
 			<DetileBtn />
 			<Banner />
-			<Chat post={post.data}/>
-			<PreNexBtn post={post.data}/>
+			<Chat />
+			<PreNexBtn />
 			<Footer />
 		</Layout>
 	);
 }
-
-

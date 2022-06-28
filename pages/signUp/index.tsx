@@ -6,25 +6,24 @@ import Select from '../../components/signUp/Select';
 import SignUpBtn from '../../components/signUp/SignUpBtn';
 import Footer from '../../components/signUp/Footer';
 
-
-
 export default function SignUp() {
 	const [checkedItems, setCheckedItems] = useState<any>(new Set());
 	const [isAllChecked, setIsAllChecked] = useState(false);
 
 	const checkedItemHandler = (id: number) => {
+	const checkId = new Set(checkedItems)
 		if (!checkedItems.has(id)) {
-			checkedItems.add(id);
-			setCheckedItems(checkedItems);
-
+			checkId.add(id);
+			setCheckedItems(checkId);
 		} else if (checkedItems.has(id)) {
-			checkedItems.delete(id);
-			setCheckedItems(checkedItems);
+			checkId.delete(id);
+			setCheckedItems(checkId);
 		}
-        if(checkedItems.size===3){
+        if(checkId.size===3){
             setIsAllChecked(true)
         }
 	};
+
 	const allCheckedHandler = (isChecked : boolean) => {
 		if (isChecked) {
 			setCheckedItems(new Set(signUpData.map(({ id }) => id)));

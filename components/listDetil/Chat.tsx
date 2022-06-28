@@ -1,25 +1,25 @@
 import Image from 'next/image';
 import styled from 'styled-components';
-import { DetailProps } from '../../pages/[id]';
+import { blogStore } from '../../utils/recoilStart'
+import { useRecoilValue } from 'recoil';
 
-interface Props {
-	data: DetailProps;
-}
+export default function Chat() {
 
-export default function Chat({ post }: { post: Props }) {
+	const posts = useRecoilValue(blogStore);
+
 	return (
 		<Container>
 			<ChatBox>
 				<Post>댓글</Post>
 				<PostIconBox>
 					<Image src="/images/heart.png" width={39} height={39} alt="heart" />
-					<div className="number">{post.data.likes}</div>
+					<div className="number">{posts.data.data.likes}</div>
 					<Image src="/images/댓글.png" width={36} height={36} alt="chat" />
-					<div className="number">{post.data.comments}</div>
+					<div className="number">{posts.data.data.comments}</div>
 				</PostIconBox>
 			</ChatBox>
 			<PostBox>
-				<NickName>{post.data.creator.nickName}</NickName>
+				<NickName>{posts.data.data.creator.nickName}</NickName>
 				<PlaceHold>※ 댓글에 답글이 달렸을 시 수정/삭제가 불가합니다.</PlaceHold>
 				<PostBtn>등록</PostBtn>
 			</PostBox>

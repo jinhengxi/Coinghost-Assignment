@@ -1,16 +1,14 @@
 import styled from 'styled-components';
-import { blogStore } from '../../utils/recoilStart'
+import { blogStore } from '../../utils/recoilStart';
 import { useRecoilValue } from 'recoil';
 
 export default function Content() {
-
 	const posts = useRecoilValue(blogStore);
+	const { contents } = posts.data.data;
 
 	return (
 		<Container>
-			<Contents>
-				{posts.data.data.contents}
-			</Contents>
+			<Contents>{contents}</Contents>
 		</Container>
 	);
 }

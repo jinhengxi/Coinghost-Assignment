@@ -1,28 +1,39 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
-import { blogStore } from '../../utils/recoilStart'
+import { blogStore } from '../../utils/recoilStart';
 import { useRecoilValue } from 'recoil';
 
-
 export default function PreNexBtn() {
-
 	const posts = useRecoilValue(blogStore);
+	const {
+		previousID,
+		previousTitle,
+		previousCreatedAt,
+		nextID,
+		nextTitle,
+		nextCreatedAt,
+	} = posts.data;
 
 	const timeCut = (value: string) => {
 		return value.replace('T', ' ').substring(0, 16);
 	};
 	return (
 		<Container>
-			<Link href="/[id]" as={`${posts.data.previousID}`}>
-			<Button>
-				<Image src="/images/다각형1.png" width={20} height={15} alt="profile" />
-				<PrePost>이전글</PrePost>
-				<PreTitle>{posts.data.previousTitle}</PreTitle>
-				<Date>{timeCut(posts.data.previousCreatedAt)}</Date>
-			</Button>
+			<Link href="/[id]" as={`/${previousID}`}>
+				<Button>
+					<Image
+						src="/images/다각형1.png"
+						width={20}
+						height={15}
+						alt="profile"
+					/>
+					<PrePost>이전글</PrePost>
+					<PreTitle>{previousTitle}</PreTitle>
+					<Date>{timeCut(previousCreatedAt)}</Date>
+				</Button>
 			</Link>
-			<Link href="/[id]" as={`${posts.data.nextID}`}>
+			<Link href="/[id]" as={`/${nextID}`}>
 				<NextBtn>
 					<Image
 						src="/images/다각형2.png"
@@ -31,8 +42,8 @@ export default function PreNexBtn() {
 						alt="profile"
 					/>
 					<PrePost>다음글</PrePost>
-					<PreTitle>{posts.data.nextTitle}</PreTitle>
-					<Date>{timeCut(posts.data.nextCreatedAt)}</Date>
+					<PreTitle>{nextTitle}</PreTitle>
+					<Date>{timeCut(nextCreatedAt)}</Date>
 				</NextBtn>
 			</Link>
 		</Container>

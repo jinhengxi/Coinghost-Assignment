@@ -54,7 +54,7 @@ export default function PostList({ id,defaultThumbnail,title ,creator,comments,l
 				<PostFlex>
 					<ImgWrap>
 						<Image
-							src={defaultThumbnail.url}
+							src={defaultThumbnail?.url}
 							width={130}
 							height={100}
 							alt="thumbnail"

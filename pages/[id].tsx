@@ -9,7 +9,7 @@ import { API } from '../utils/fetcher';
 import Header from '../components/listDetil/Header';
 import UserInfo from '../components/listDetil/UserInfo';
 import Content from '../components/listDetil/Content';
-import DetileBtn from '../components/listDetil/BackList';
+import DetaileBtn from '../components/listDetil/DetaileBtn';
 import Banner from '../components/listDetil/Banner';
 import Chat from '../components/listDetil/Chat';
 import PreNexBtn from '../components/listDetil/PreNexBtn';
@@ -31,23 +31,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-	console.log(params);
 	const res = await fetch(`${API.BLOGS}/${params?.id}`);
 	const post = await res.json();
 	return { props: { post } };
 };
 
-export interface DetailProps {
-	id: number;
-	title: string;
-	contents: string;
-	creator: { nickName: string };
-	createdAt: string;
-	defaultThumbnail: { url: string };
-	likes: number;
-	comments: number;
-	views: number;
-}
 
 export default function Detail({
 	post,
@@ -63,7 +51,7 @@ export default function Detail({
 			<Header />
 			<UserInfo />
 			<Content />
-			<DetileBtn />
+			<DetaileBtn />
 			<Banner />
 			<Chat />
 			<PreNexBtn />

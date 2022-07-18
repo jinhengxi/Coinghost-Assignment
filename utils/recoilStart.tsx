@@ -20,7 +20,6 @@ interface DataProps {
 	previousTitle: string;
 	previousCreatedAt: string;
     data: DetailProps;
-
 }
 
 interface Props {

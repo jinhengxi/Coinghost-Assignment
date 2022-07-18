@@ -11,6 +11,7 @@ interface Props {
 export default function AllCheck({onClickHandler}:Props) {
 
 	const [bChecked, setChecked] = useState(false);
+	
 	const checkHandler = () => {
 		setChecked(!bChecked);
 		onClickHandler(!bChecked);

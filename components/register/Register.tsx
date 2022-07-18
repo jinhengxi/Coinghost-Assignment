@@ -46,7 +46,8 @@ export default function Register() {
 			body: JSON.stringify(postPhone),
 		})
 			.then((res) => res.json())
-			.then((data) => alert(data?.data.message));
+			.then((data) => alert(data?.data.message))
+			.catch((data)=>alert(data.data.message))
 	};
 
 	const postAuth = () => {
@@ -66,10 +67,11 @@ export default function Register() {
 					setAuthData(data.data.message)
 					alert('인증 성공')
 				}else{
-					alert(data.data.message);
+					alert(data.data.message)
+					setAuthData(false)
 				}
-			});
-		//catch
+			})
+
 	};
 
 	return (

@@ -9,9 +9,9 @@ import Footer from '../../components/signUp/Footer';
 export default function SignUp() {
 	const [checkedItems, setCheckedItems] = useState<any>(new Set());
 	const [isAllChecked, setIsAllChecked] = useState(false);
+	const checkId = new Set(checkedItems)
 
 	const checkedItemHandler = (id: number) => {
-	const checkId = new Set(checkedItems)
 		if (!checkedItems.has(id)) {
 			checkId.add(id);
 			setCheckedItems(checkId);
@@ -28,10 +28,10 @@ export default function SignUp() {
 		if (isChecked) {
 			setCheckedItems(new Set(signUpData.map(({ id }) => id)));
 			setIsAllChecked(true);
-		} else { 
-			checkedItems.clear();
+		} else {
+			checkId.clear();
 			setIsAllChecked(false);
-			setCheckedItems(checkedItems)
+			setCheckedItems(checkId)
 		}
 	};
 

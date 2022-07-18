@@ -3,6 +3,7 @@ import type {
 	GetStaticPaths,
 	InferGetStaticPropsType,
 } from 'next';
+import { useEffect } from 'react';
 
 import { Layout } from '../components/commons/Layout';
 import { API } from '../utils/fetcher';
@@ -17,13 +18,12 @@ import Footer from '../components/listDetil/Footer';
 
 import { useSetRecoilState } from 'recoil';
 import { blogStore } from '../utils/recoilStart';
-import { useEffect } from 'react';
+
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	const res = await fetch(`${API.BLOGS}`);
 	const post = await res.json();
 	const posts = post.data.data;
-
 	const paths = posts.map((post: { id: number }) => ({
 		params: { id: post.id.toString() },
 	}));
@@ -36,15 +36,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 	return { props: { post } };
 };
 
-
 export default function Detail({
 	post,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+const blog = useSetRecoilState(blogStore);
 
-	const blog = useSetRecoilState(blogStore);
-	useEffect(() => {
-		blog(post);
-	}, [blog, post]);
+useEffect(() => {
+	blog(post);
+}, [blog, post]);
 
 	return (
 		<Layout background="#5382eb">

@@ -46,8 +46,6 @@ export default function Posts({ isLikesBtn }: LikeProps) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [data, target]);
 
-
-
 	return (
 		<>
 			{posts?.map((posts) => {

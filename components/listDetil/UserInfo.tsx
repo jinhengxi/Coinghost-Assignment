@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 import { FiMoreVertical } from 'react-icons/fi';
+
 import { useRecoilValue } from 'recoil';
 import { blogStore } from '../../utils/recoilStart';
 

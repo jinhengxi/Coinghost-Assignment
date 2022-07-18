@@ -23,6 +23,7 @@ export default function Essential({ el, onClickItemHandler, isAllChecked }: Esse
 		setChecked(!bChecked);
 		onClickItemHandler(el.id);
 	};
+	
 	const allCheckHandler = () => setChecked(isAllChecked);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => allCheckHandler(), [isAllChecked]);
